@@ -71,6 +71,8 @@
         <xxl-job.version>2.3.0</xxl-job.version>
         <qlexpress.version>3.2.0</qlexpress.version>
         <logstash-logback.version>6.6</logstash-logback.version>
+        <maven-javadoc-plugin.version>3.5.0</maven-javadoc-plugin.version>
+        <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -304,7 +306,7 @@
         <module>tlog-rest-template</module>
         <module>tlog-logstash</module>
     </modules>
- <profiles>
+    <profiles>
 
         <profile>
             <id>release</id>
@@ -376,6 +378,21 @@
         </repository>
 
     </repositories>
+
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>psmtech-public</id>
+            <name>psmtech</name>
+            <url>https://nexus.tool.psmtech.com.cn:8081/repository/maven-public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
 
 </project>
