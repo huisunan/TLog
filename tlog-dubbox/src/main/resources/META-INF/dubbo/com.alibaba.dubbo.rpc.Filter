@@ -1,2 +1,0 @@
-tlogDubboFilter=com.yomahub.tlog.dubbox.filter.TLogDubboxFilter
-tlogDubboInvokeTimeFilter=com.yomahub.tlog.dubbox.filter.TLogDubboxInvokeTimeFilter

@@ -6,7 +6,7 @@
     <groupId>com.yomahub</groupId>
     <artifactId>tlog</artifactId>
     <packaging>pom</packaging>
-    <version>1.5.0</version>
+    <version>1.5.1</version>
     <name>tlog</name>
     <description>a lightweight log tracking framework</description>
     <url>https://github.com/bryan31/TLog</url>
@@ -46,8 +46,8 @@
         <java.version>1.8</java.version>
         <commons.lang3.version>3.4</commons.lang3.version>
         <commons-collections.version>4.1</commons-collections.version>
-        <spring.version>5.0.9.RELEASE</spring.version>
-        <spring-boot.version>2.0.5.RELEASE</spring-boot.version>
+        <spring.version>6.2.1</spring.version>
+        <spring-boot.version>3.4.1</spring-boot.version>
         <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
         <dubbox.version>2.8.4</dubbox.version>
         <dubbo.version>2.7.6</dubbo.version>
@@ -162,14 +162,6 @@
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
-                <optional>true</optional>
-                <scope>provided</scope>
-            </dependency>
-            <!-- dubbox包 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>dubbo</artifactId>
-                <version>${dubbox.version}</version>
                 <optional>true</optional>
                 <scope>provided</scope>
             </dependency>
@@ -369,7 +361,6 @@
         <module>tlog-common</module>
         <module>tlog-dubbo</module>
         <module>tlog-webroot</module>
-        <module>tlog-dubbox</module>
         <module>tlog-core</module>
         <module>tlog-feign</module>
         <module>tlog-httpclient</module>
@@ -388,13 +379,21 @@
     </modules>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
         <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>psmtech-releases</id>
+            <name>Psmtech 发行版</name>
+            <url>https://dev.psmtech.com.cn:8081/repository/maven-releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
         </repository>
+        <snapshotRepository>
+            <id>psmtech-snapshots</id>
+            <name>psmtech-SNAPSHOT</name>
+            <url>https://dev.psmtech.com.cn:8081/repository/maven-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </snapshotRepository>
     </distributionManagement>
 </project>
