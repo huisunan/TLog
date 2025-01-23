@@ -284,79 +284,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.18.1</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.7.1</version>
-            </plugin>
-            <!-- Javadoc -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- Gpg Signature -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
     <modules>
         <module>tlog-common</module>
         <module>tlog-dubbo</module>
@@ -377,23 +304,78 @@
         <module>tlog-rest-template</module>
         <module>tlog-logstash</module>
     </modules>
+ <profiles>
 
-    <distributionManagement>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <!-- Source -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>${maven-source-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- Javadoc -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <doclint>none</doclint>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+            <distributionManagement>
+                <repository>
+                    <id>psmtech-releases</id>
+                    <name>Psmtech 发行版</name>
+                    <url>https://dev.psmtech.com.cn:8081/repository/maven-releases/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                </repository>
+                <snapshotRepository>
+                    <id>psmtech-snapshots</id>
+                    <name>psmtech-SNAPSHOT</name>
+                    <url>https://dev.psmtech.com.cn:8081/repository/maven-snapshots/</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
+
+    <repositories>
         <repository>
-            <id>psmtech-releases</id>
-            <name>Psmtech 发行版</name>
-            <url>https://dev.psmtech.com.cn:8081/repository/maven-releases/</url>
+            <id>psmtech-public</id>
+            <name>psmtech</name>
+            <url>https://dev.psmtech.com.cn:8081/repository/maven-public/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
         </repository>
-        <snapshotRepository>
-            <id>psmtech-snapshots</id>
-            <name>psmtech-SNAPSHOT</name>
-            <url>https://dev.psmtech.com.cn:8081/repository/maven-snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </snapshotRepository>
-    </distributionManagement>
+
+    </repositories>
+
+
 </project>
