@@ -350,7 +350,7 @@
                 <repository>
                     <id>psmtech-releases</id>
                     <name>Psmtech 发行版</name>
-                    <url>https://dev.psmtech.com.cn:8081/repository/maven-releases/</url>
+                    <url>https://nexus.tool.psmtech.com.cn:8081/repository/maven-releases/</url>
                     <releases>
                         <enabled>true</enabled>
                     </releases>
@@ -358,7 +358,7 @@
                 <snapshotRepository>
                     <id>psmtech-snapshots</id>
                     <name>psmtech-SNAPSHOT</name>
-                    <url>https://dev.psmtech.com.cn:8081/repository/maven-snapshots/</url>
+                    <url>https://nexus.tool.psmtech.com.cn:8081/repository/maven-snapshots/</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
